@@ -1,0 +1,13 @@
+{
+  "itemGroup.chaosandcreation": "Example Mod Tab",
+  "block.chaosandcreation.example_block": "Example Block",
+  "item.chaosandcreation.example_item": "Example Item",
+
+  "chaosandcreation.configuration.title": "Chaos and Creation Configs",
+  "chaosandcreation.configuration.section.chaosandcreation.common.toml": "Chaos and Creation Configs",
+  "chaosandcreation.configuration.section.chaosandcreation.common.toml.title": "Chaos and Creation Configs",
+  "chaosandcreation.configuration.items": "Item List",
+  "chaosandcreation.configuration.logDirtBlock": "Log Dirt Block",
+  "chaosandcreation.configuration.magicNumberIntroduction": "Magic Number Text",
+  "chaosandcreation.configuration.magicNumber": "Magic Number"
+}
