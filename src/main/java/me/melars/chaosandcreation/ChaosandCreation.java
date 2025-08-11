@@ -1,5 +1,7 @@
 package me.melars.chaosandcreation;
 
+import me.melars.chaosandcreation.block.ModBlocks;
+import me.melars.chaosandcreation.item.ModItems;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -44,6 +46,8 @@ public class ChaosandCreation {
         NeoForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::addCreative);
         // call register functions here :p
+        ModBlocks.register(modEventBus);
+        ModItems.register(modEventBus);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
