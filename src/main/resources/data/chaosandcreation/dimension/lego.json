@@ -1,0 +1,11 @@
+{
+  "type": "chaosandcreation:lego",
+  "generator": {
+    "type": "minecraft:noise",
+    "settings": "chaosandcreation:lego",
+    "biome_source": {
+      "type": "minecraft:fixed",
+      "biome": "chaosandcreation:lego_biome"
+    }
+  }
+}

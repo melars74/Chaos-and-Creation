@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "axis=x": {"model": "chaosandcreation:block/lego_portal", "y": 90},
+    "axis=z": {"model": "chaosandcreation:block/lego_portal"}
+  }
+}

@@ -1,6 +1,7 @@
 package me.melars.chaosandcreation.block;
 
 import me.melars.chaosandcreation.ChaosandCreation;
+import me.melars.chaosandcreation.block.custom.LegoPortalBlock;
 import me.melars.chaosandcreation.item.ModItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.BlockItem;
@@ -22,6 +23,10 @@ public class ModBlocks {
     //      be a cube with no studs on top)
     public static final DeferredBlock<Block> LEGO_BLOCK = registerBlock("lego_block",
             () -> new Block(BlockBehaviour.Properties.of()));
+
+    // not registering item intentionally for portal
+    public static final DeferredBlock<Block> LEGO_PORTAL = BLOCKS.register("lego_portal",
+            () -> new LegoPortalBlock(BlockBehaviour.Properties.of().noCollission().lightLevel(s -> 11)));
 
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
