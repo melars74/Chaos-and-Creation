@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "on_top=true": {
       "model": "chaosandcreation:block/lego_block"
+    },
+    "on_top=false": {
+      "model": "chaosandcreation:block/lego_block_blend"
     }
   }
 }

@@ -1,5 +1,6 @@
 package me.melars.chaosandcreation.block.custom;
 
+import me.melars.chaosandcreation.util.LegoPortalShape;
 import me.melars.chaosandcreation.world.ModDimensions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -10,6 +11,8 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -19,12 +22,10 @@ import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.portal.DimensionTransition;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class LegoPortalBlock extends Block {
-
-    private static final VoxelShape X_SHAPE = Block.box(0, 0, 7, 16, 16, 9);
-    private static final VoxelShape Z_SHAPE = Block.box(7, 0, 0, 9, 16, 16);
 
     public LegoPortalBlock(Properties properties) {
         super(BlockBehaviour.Properties.of()
@@ -41,11 +42,12 @@ public class LegoPortalBlock extends Block {
         builder.add(BlockStateProperties.HORIZONTAL_AXIS);
     }
 
+
+    // dont wanna highlight/break
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos,
                                CollisionContext ctx) {
-        return state.getValue(BlockStateProperties.HORIZONTAL_AXIS) == Direction.Axis.X
-                ? X_SHAPE : Z_SHAPE;
+        return Shapes.empty();
     }
 
     @Override
@@ -73,5 +75,21 @@ public class LegoPortalBlock extends Block {
                 post
         ));
     }
+
+    @Override
+    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+        Direction.Axis axis = state.getValue(BlockStateProperties.HORIZONTAL_AXIS);
+        return LegoPortalShape.portalStillValid(level, pos, axis);
+    }
+
+    @Override
+    public BlockState updateShape(BlockState state, Direction dir, BlockState neighborState,
+                                  LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
+        if (!state.canSurvive(level, pos)) {
+            return net.minecraft.world.level.block.Blocks.AIR.defaultBlockState();
+        }
+        return state;
+    }
+
 
 }

@@ -1,0 +1,33 @@
+{
+	"format_version": "1.21.6",
+	"parent": "minecraft:block/cube_all",
+	"texture_size": [64, 64],
+	"textures": {
+		"0": "chaosandcreation:block/lego_block",
+		"particle": "chaosandcreation:block/lego_block"
+	},
+	"elements": [
+		{
+			"name": "Block",
+			"from": [0, 0, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [4, 0, 8, 3.75], "texture": "#0"},
+				"east": {"uv": [4, 3.75, 8, 7.5], "texture": "#0"},
+				"south": {"uv": [4, 7.5, 8, 11.25], "texture": "#0"},
+				"west": {"uv": [0, 8, 4, 11.75], "texture": "#0"},
+				"up": {"uv": [4, 4, 0, 0], "texture": "#0"},
+				"down": {"uv": [4, 4, 0, 8], "texture": "#0"}
+			}
+		}
+	],
+	"groups": [
+		0,
+		{
+			"name": "Studs",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": []
+		}
+	]
+}

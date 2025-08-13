@@ -1,6 +1,7 @@
 package me.melars.chaosandcreation.block;
 
 import me.melars.chaosandcreation.ChaosandCreation;
+import me.melars.chaosandcreation.block.custom.LegoBlock;
 import me.melars.chaosandcreation.block.custom.LegoPortalBlock;
 import me.melars.chaosandcreation.item.ModItems;
 import net.minecraft.core.registries.Registries;
@@ -19,10 +20,8 @@ public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS =
             DeferredRegister.createBlocks(ChaosandCreation.MODID);
 
-    //TODO: blockstate for stacking (just make anything with a block on top of it
-    //      be a cube with no studs on top)
     public static final DeferredBlock<Block> LEGO_BLOCK = registerBlock("lego_block",
-            () -> new Block(BlockBehaviour.Properties.of()));
+            () -> new LegoBlock(BlockBehaviour.Properties.of()));
 
     // not registering item intentionally for portal
     public static final DeferredBlock<Block> LEGO_PORTAL = BLOCKS.register("lego_portal",
