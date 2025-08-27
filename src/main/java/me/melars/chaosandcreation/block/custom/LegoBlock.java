@@ -19,7 +19,7 @@ public class LegoBlock extends Block {
     public LegoBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any()
-                .setValue(ON_TOP, true));
+                .setValue(ON_TOP, false));
     }
 
     @Override
@@ -38,11 +38,27 @@ public class LegoBlock extends Block {
     }
 
     @Override
+    public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean isMoving) {
+        if (!level.isClientSide) {
+            BlockState above = level.getBlockState(pos.above());
+            boolean blockAbove = !(above.isAir() || above.is(ModBlocks.LEGO_PORTAL.get()));
+            boolean newOnTop = !blockAbove;
+            if (state.getValue(ON_TOP) != newOnTop) {
+                level.setBlock(pos, state.setValue(ON_TOP, newOnTop), Block.UPDATE_CLIENTS);
+            }
+        }
+        super.onPlace(state, level, pos, oldState, isMoving);
+    }
+
+    @Override
     public BlockState updateShape(BlockState state, Direction dir, BlockState neighborState,
                                   LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
         if (dir == Direction.UP) {
             boolean blockAbove = !(neighborState.isAir() || neighborState.is(ModBlocks.LEGO_PORTAL.get()));
-            return state.setValue(ON_TOP, !blockAbove);
+            boolean newOnTop = !blockAbove;
+            if (state.getValue(ON_TOP) != newOnTop)
+                return state.setValue(ON_TOP, !blockAbove);
+            return state; // no change no write grr
         }
         return super.updateShape(state, dir, neighborState, level, pos, neighborPos);
     }

@@ -23,6 +23,10 @@ public class ModBlocks {
     public static final DeferredBlock<Block> LEGO_BLOCK = registerBlock("lego_block",
             () -> new LegoBlock(BlockBehaviour.Properties.of()));
 
+    //FIXME:
+    public static final DeferredBlock<Block> LEGO_FRAME_BLOCK = registerBlock("lego_frame_block",
+            () -> new LegoBlock(BlockBehaviour.Properties.of()));
+
     // not registering item intentionally for portal
     public static final DeferredBlock<Block> LEGO_PORTAL = BLOCKS.register("lego_portal",
             () -> new LegoPortalBlock(BlockBehaviour.Properties.of().noCollission().lightLevel(s -> 11)));

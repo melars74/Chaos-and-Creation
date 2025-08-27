@@ -1,7 +1,7 @@
 {
   "aquifers_enabled": true,
   "default_block": {
-    "Name": "chaosandcreation:lego_block"
+    "Name": "minecraft:stone"
   },
   "default_fluid": {
     "Name": "minecraft:water",
@@ -384,9 +384,30 @@
     }
   ],
   "surface_rule": {
-    "type": "minecraft:block",
-    "result_state": {
-      "Name": "chaosandcreation:lego_block"
-    }
+    "type": "minecraft:sequence",
+    "sequence": [
+      {
+        "type": "minecraft:condition",
+        "if_true": {
+          "type": "minecraft:stone_depth",
+          "add_surface_depth": false,
+          "offset": 0,
+          "surface_type": "floor",
+          "secondary_depth_range": 0
+        },
+        "then_run": {
+          "type": "minecraft:block",
+          "result_state": {
+            "Name": "chaosandcreation:lego_block",
+            "Properties": { "on_top": "true" }
+          }
+        }
+      },
+      {
+        "type": "minecraft:block",
+        "result_state": { "Name": "chaosandcreation:lego_block" }
+      }
+    ]
   }
+
 }

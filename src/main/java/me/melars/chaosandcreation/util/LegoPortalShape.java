@@ -6,6 +6,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.Objects;
@@ -21,7 +22,8 @@ public final class LegoPortalShape {
     }
 
     private static boolean isFrame(LevelReader level, BlockPos pos) {
-        return level.getBlockState(pos).is(ModBlocks.LEGO_BLOCK.get());
+        //return level.getBlockState(pos).is(ModBlocks.LEGO_BLOCK.get());
+        return level.getBlockState(pos).is(ModBlocks.LEGO_FRAME_BLOCK.get());
     }
 
     private static boolean isPortal(LevelReader level, BlockPos pos) {
@@ -31,7 +33,8 @@ public final class LegoPortalShape {
     // legos inside not allowed >:[
     private static boolean isReplaceable(LevelReader level, BlockPos pos) {
         BlockState st = level.getBlockState(pos);
-        if (st.is(ModBlocks.LEGO_BLOCK.get())) return false; // never treat frame as interior
+        if (st.is(ModBlocks.LEGO_BLOCK.get()) || st.is(ModBlocks.LEGO_FRAME_BLOCK.get()))
+            return false; // never treat frame as interior
         return st.canBeReplaced();
     }
 
